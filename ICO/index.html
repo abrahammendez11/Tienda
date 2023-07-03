@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+    <head>
+            <title>Pagina Principal</title>
+            <meta name="google" value="notranslate"/>            
+            <link rel="stylesheet" type="text/css" href="css/menu.css">
+            <link rel="stylesheet" type="text/css" href="css/carrouserl.css">
+            <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+            <script>/**
+                * @Titulo: Slider Responsivo
+                * @Autor: Creaticode
+                * @URL: http://creaticode.com 
+                */
+               $(function() {
+                   /** -----------------------------------------
+                    * Modulo del Slider 
+                    -------------------------------------------*/
+                    var SliderModule = (function() {
+                        var pb = {};
+                        pb.el = $('#slider');
+                        pb.items = {
+                            panels: pb.el.find('.slider-wrapper > li'),
+                        }
+               
+                        // Interval del Slider
+                        var SliderInterval,
+                            currentSlider = 0,
+                            nextSlider = 1,
+                            lengthSlider = pb.items.panels.length;
+               
+                        // Constructor del Slider
+                        pb.init = function(settings) {
+                            this.settings = settings || {duration: 8000};
+                            var items = this.items,
+                                lengthPanels = items.panels.length,
+                                output = '';
+               
+                            // Insertamos nuestros botones
+                            for(var i = 0; i < lengthPanels; i++) {
+                                if(i == 0) {
+                                    output += '<li class="active"></li>';
+                                } else {
+                                    output += '<li></li>';
+                                }
+                            }
+               
+                            $('#control-buttons').html(output);
+               
+                            // Activamos nuestro Slider
+                            activateSlider();
+                            // Eventos para los controles
+                            $('#control-buttons').on('click', 'li', function(e) {
+                                var $this = $(this);
+                                if(!(currentSlider === $this.index())) {
+                                    changePanel($this.index());
+                                }
+                            });
+               
+                        }
+               
+                        // Funcion para activar el Slider
+                        var activateSlider = function() {
+                            SliderInterval = setInterval(pb.startSlider, pb.settings.duration);
+                        }
+               
+                        // Funcion para la Animacion
+                        pb.startSlider = function() {
+                            var items = pb.items,
+                                controls = $('#control-buttons li');
+                            // Comprobamos si es el ultimo panel para reiniciar el conteo
+                            if(nextSlider >= lengthSlider) {
+                                nextSlider = 0;
+                                currentSlider = lengthSlider-1;
+                            }
+               
+                            controls.removeClass('active').eq(nextSlider).addClass('active');
+                            items.panels.eq(currentSlider).fadeOut('slow');
+                            items.panels.eq(nextSlider).fadeIn('slow');
+               
+                            // Actualizamos los datos del slider
+                            currentSlider = nextSlider;
+                            nextSlider += 1;
+                        }
+               
+                        // Funcion para Cambiar de Panel con Los Controles
+                        var changePanel = function(id) {
+                            clearInterval(SliderInterval);
+                            var items = pb.items,
+                                controls = $('#control-buttons li');
+                            // Comprobamos si el ID esta disponible entre los paneles
+                            if(id >= lengthSlider) {
+                                id = 0;
+                            } else if(id < 0) {
+                                id = lengthSlider-1;
+                            }
+               
+                            controls.removeClass('active').eq(id).addClass('active');
+                            items.panels.eq(currentSlider).fadeOut('slow');
+                            items.panels.eq(id).fadeIn('slow');
+               
+                            // Volvemos a actualizar los datos del slider
+                            currentSlider = id;
+                            nextSlider = id+1;
+                            // Reactivamos nuestro slider
+                            activateSlider();
+                        }
+               
+                       return pb;
+                    }());
+               
+                    SliderModule.init({duration: 4000});
+               
+               });</script>
+            
+            
+    </head>
+    <body>
+	    </div><nav class="main-menu">
+        <div>
+            <a class="logo" href="http://startific.com">
+            </a> 
+            </div> 
+            <div class="settings"></div>
+            <div class="scrollbar" id="style-1">
+                
+        <ul>
+        <li>                                   
+        <a href="http://startific.com">
+        <i class="fa fa-home fa-lg"></i>
+        <span class="nav-text">Home</span>
+        </a>
+        </li>   
+            
+        <li>                                 
+        <a href="http://startific.com">
+        <i class="fa fa-user fa-lg"></i>
+        <span class="nav-text">Login</span>
+        </a>
+        </li>   
+        
+            
+        <li>                                 
+        <a href="http://startific.com">
+        <i class="fa fa-envelope-o fa-lg"></i>
+        <span class="nav-text">Contact</span>
+        </a>
+        </li>   
+            
+        
+        
+            
+        <li>
+        <a href="http://startific.com">
+        <i class="fa fa-heart-o fa-lg"></i>
+                                
+        <span class="share"> 
+        
+        
+        <div class="addthis_default_style addthis_32x32_style">
+            
+        <div style="position:absolute;
+        margin-left: 56px;top:3px;"> 
+            
+            
+        
+            
+            <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" class="share-popup"><img src="http://icons.iconarchive.com/icons/danleech/simple/512/facebook-icon.png" width="30px" height="30px"></a>
+        
+            <a href="https://twitter.com/share" target="_blank" class="share-popup"><img src="https://cdn1.iconfinder.com/data/icons/metro-ui-dock-icon-set--icons-by-dakirby/512/Twitter_alt.png" width="30px" height="30px"></a>
+        
+            
+        
+        
+        <a href="https://plusone.google.com/_/+1/confirm?hl=en&url=_URL_&title=_TITLE_
+        " target="_blank" class="share-popup"><img src="http://icons.iconarchive.com/icons/danleech/simple/512/google-plus-icon.png" width="30px" height="30px"></a>   
+            
+            
+            
+        </div>
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4ff17589278d8b3a"></script>
+                                
+                                    
+                                        
+                                    
+                                    
+                                </span>
+                                <span class="twitter"></span>
+                                <span class="google"></span>
+                                <span class="fb-like">  
+        <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fstartific&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:35px;" allowTransparency="true"></iframe>
+                                
+                                </span>
+                                <span class="nav-text">
+                                </span>
+                                
+                            </a>
+        
+        </li>
+                                    
+        
+            
+            
+        </li>
+        <li class="darkerlishadow">
+        <a href="http://startific.com">
+        <i class="fa fa-clock-o fa-lg"></i>
+        <span class="nav-text">News</span>
+        </a>
+        </li>
+            
+        <li class="darkerli">
+        <a href="http://startific.com">
+        <i class="fa fa-desktop fa-lg"></i>
+        <span class="nav-text">Technology</span>
+        </a>
+        </li>
+            
+        <li class="darkerli">
+        <a href="http://startific.com">
+        <i class="fa fa-plane fa-lg"></i>
+        <span class="nav-text">Travel</span>
+        </a>
+        </li>
+            
+        <li class="darkerli">
+        <a href="http://startific.com">
+        <i class="fa fa-shopping-cart"></i>
+            <span class="nav-text">Shopping</span>
+        </a>
+        </li>
+            
+        <li class="darkerli">
+        <a href="http://startific.com">
+        <i class="fa fa-microphone fa-lg"></i>
+        <span class="nav-text">Film & Music</span>
+        </a>
+        </li>
+        
+        <li class="darkerli">
+        <a href="http://startific.com">
+        <i class="fa fa-flask fa-lg"></i>
+        <span class="nav-text">Web Tools</span>
+        </a>
+        </li>
+            
+        <li class="darkerli">
+        <a href="http://startific.com">
+        <i class="fa fa-picture-o fa-lg"></i>
+        <span class="nav-text">Art & Design</span>
+        </a>
+        </li>
+        
+        <li class="darkerli">
+        <a href="http://startific.com">
+        <i class="fa fa-align-left fa-lg"></i>
+        <span class="nav-text">Magazines
+        </span>
+        </a>
+        </li>
+            
+        <li class="darkerli">
+        <a href="http://startific.com">
+        <i class="fa fa-gamepad fa-lg"></i>
+        <span class="nav-text">Games</span>
+        </a>
+        </li>
+            
+        <li class="darkerli">
+        <a href="http://startific.com">
+        <i class="fa fa-glass fa-lg"></i>
+        <span class="nav-text">Life & Style
+        </span>
+        </a>
+        </li>
+            
+        <li class="darkerlishadowdown">
+        <a href="http://startific.com">
+        <i class="fa fa-rocket fa-lg"></i>
+        <span class="nav-text">Fun</span>
+        </a>
+        </li>
+            
+            
+        </ul>
+        
+            
+        <li>
+                                            
+        <a href="http://startific.com">
+        <i class="fa fa-question-circle fa-lg"></i>
+        <span class="nav-text">Help</span>
+        </a>
+        </li>   
+            
+            
+        <ul class="logout">
+        <li>
+            <a href="http://startific.com">
+            <i class="fa fa-lightbulb-o fa-lg"></i>
+            <span class="nav-text">
+            BLOG 
+            </span>
+            </a>
+        </li>  
+        </ul>
+          </nav>
+                
+            
+        <div class="container">
+        	<!-- ==================================== 
+	    Contenedor Slider 
+	=======================================-->
+	    <section id="slider" class="container">
+		    <ul class="slider-wrapper">
+		    <li class="current-slide">
+			    <img src="http://i9.photobucket.com/albums/a88/creaticode/1_zpsc6871490.jpg" title="" alt="">
+
+			<div class="caption">
+				<h2 class="slider-title">Diseño web</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, placeat est. Alias illo hic quo nobis, aspernatur iste ut voluptate.</p>
+			</div>
+		</li>
+
+		<li>
+			<img src="http://i9.photobucket.com/albums/a88/creaticode/2_zps6ccd36bd.jpg" title="" alt="">
+
+			<div class="caption">
+				<h2 class="slider-title">Diseño Responsive</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo iusto placeat aliquid tempore harum, similique!</p>
+			</div>
+		</li>
+
+		<li>
+			<img src="http://i9.photobucket.com/albums/a88/creaticode/4_zps611bc9f9.jpg" title="" alt="">
+
+			<div class="caption">
+				<h2 class="slider-title">Identidad Corporativa</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dicta laudantium voluptatem minima! Dolorum tempore dolores excepturi omnis provident. Commodi quis aperiam maiores, dolore a perferendis!</p>
+			</div>
+		</li>
+
+		<li>
+			<img src="http://i9.photobucket.com/albums/a88/creaticode/3_zps70e4fcc5.jpg" title="" alt="">
+
+			<div class="caption">
+				<h2 class="slider-title">Desarrollo Web</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolore dignissimos laudantium.</p>
+			</div>
+		</li>
+		</ul>
+		<!-- Sombras -->
+		<div class="slider-shadow"></div>
+		
+		<!-- Controles de Navegacion -->
+		<ul id="control-buttons" class="control-buttons"></ul>
+	</section>
+                        
+    </body>
+</html>
